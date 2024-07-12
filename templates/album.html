@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{ album.artwork }}" class="img-fluid" alt="{{ album.title }}">
+    </div>
+    <div class="col-md-6">
+        <h1>{{ album.title }}</h1>
+        <p><strong>Year:</strong> {{ album.year }}</p>
+        <p><strong>Featured Artist:</strong> {{ album.featured_artist }}</p>
+        <p><strong>Description:</strong> {{ album.description }}</p>
+        <p><strong>Tracks:</strong></p>
+        <ul>
+            {% for track in album.tracks %}
+            <li>{{ track }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Lyrics:</strong> <pre>{{ album.lyrics }}</pre></p>
+        <div class="embed-container">
+            <iframe src="{{ album.spotify_link }}" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+        <div class="embed-container">
+            <iframe allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="{{ album.apple_music_link }}"></iframe>
+        </div>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Back to Albums</a>
+    </div>
+</div>
+{% endblock %}

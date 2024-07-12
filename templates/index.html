@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Albums</h1>
+<div class="row">
+    {% for album in albums %}
+    <div class="col-md-4">
+        <a href="{{ url_for('album', album_id=album.id) }}" style="text-decoration:none">
+            <div class="card mb-4">
+                <img src="{{ album.artwork }}" class="card-img-top" alt="{{ album.title }}">
+                <div class="card-body">
+                    <h5 class="card-title" style="text-align: center;">{{ album.title }}</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
