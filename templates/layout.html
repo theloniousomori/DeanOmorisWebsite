@@ -6,6 +6,7 @@
     <title>{{ title }}</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">  <!--For the Music Links -->
 </head>
 <body>
     <div class="container">
@@ -17,19 +18,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Discography</a>
+                        <a class="nav-link" id="{{ 'active' if current_page == 'home' else '' }}" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                        <a class="nav-link" id="{{ 'active' if current_page == 'discography' else '' }}" href="{{ url_for('discography') }}">Discography</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('film') }}">Film</a>
+                        <a class="nav-link" id="{{ 'active' if current_page == 'film' else '' }}" href="{{ url_for('film') }}">Film</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('causes') }}">Causes</a>
+                        <a class="nav-link" id="{{ 'active' if current_page == 'causes' else '' }}" href="{{ url_for('causes') }}">Causes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        <a class="nav-link" id="{{ 'active' if current_page == 'about' else '' }}" href="{{ url_for('about') }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="{{ 'active' if current_page == 'contact' else '' }}" href="{{ url_for('contact') }}">Contact</a>
                     </li>
                 </ul>
             </div>

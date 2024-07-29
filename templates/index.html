@@ -1,18 +1,21 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h1>Albums</h1>
-<div class="row">
-    {% for album in albums %}
-    <div class="col-md-4">
-        <a href="{{ url_for('album', album_id=album.id) }}" style="text-decoration:none">
-            <div class="card mb-4">
-                <img src="{{ album.artwork }}" class="card-img-top" alt="{{ album.title }}">
-                <div class="card-body">
-                    <h5 class="card-title" style="text-align: center;">{{ album.title }}</h5>
-                </div>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
+<h1 class="title"></h1>
+<div class="video-container">
+    <video id="promoVideo" playsinline autoplay muted controls >
+        <source src="{{ url_for('static', filename='videos/homepage-video.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var video = document.getElementById('promoVideo');
+        video.addEventListener('ended', function () {
+            video.currentTime = video.duration - 0.1; // Freeze at the last frame
+        });
+    });
+    document.getElementById("promoVideo").controls = false;
+</script>
+
 {% endblock %}

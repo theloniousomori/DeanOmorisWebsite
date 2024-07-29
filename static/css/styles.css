@@ -15,9 +15,12 @@ body {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:hover{
     color: #007bff;
     transform: scale(1.1);
+}
+#active{
+    color: #007bff;
 }
 
 .card {
@@ -35,6 +38,21 @@ body {
     background-color: #007bff;
     border-color: #007bff;
     color: #ffffff;
+}
+
+.film-container {
+    background-color: #303030;
+    border-radius: 25px;
+    color: #b9b9b9;
+}
+
+.text-box1 {
+    background-color: #303030;
+    color: #ffffff;
+}
+
+.tidal-logo {
+    content: url(../images/icons/tidal-black-icon.svg);
 }
 
 /* Dark mode styles */
@@ -57,6 +75,9 @@ body {
         color: #007bff;
         transform: scale(1.1);
     }
+    #active{
+        color: #007bff;
+    }
 
     .card {
         background-color: #1e1e1e;
@@ -72,12 +93,170 @@ body {
         border-color: #007bff;
         color: #ffffff;
     }
+    .film-container {
+        background-color: #b9b9b9;
+        border-radius: 25px;
+        color: #303030;
+    }
+    .text-box1 {
+        background-color: #b9b9b9;
+        color: #000000;
+    }
+    .tidal-logo {
+        content: url(../images/icons/tidal-white-icon.svg);
+    }
 }
 
 .embed-container {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .navbar-brand {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.form-control {
+    text-align: center;
+    width: 100%;
+}
+
+
+.form-group {
+    text-align: center;
+}
+
+.form {
+    text-align: center;
+}
+
+.film {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.cause-title {
+    padding-top: 25px;
+    text-align: center;
+    font-size: x-large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cause-description {
+    text-align: center;
+    font-size: medium;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.text-box1 {
+    border-radius: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.custom-modal {
+    max-width: 80%; /* Adjust the percentage as needed */
+    margin: auto;
+}
+
+@media (min-width: 768px) {
+    .custom-modal {
+        max-width: 70%; /* Adjust the percentage as needed */
+    }
+}
+
+@media (min-width: 992px) {
+    .custom-modal {
+        max-width: 60%; /* Adjust the percentage as needed */
+    }
+}
+
+@media (min-width: 1200px) {
+    .custom-modal {
+        max-width: 50%; /* Adjust the percentage as needed */
+    }
+}
+
+.modal-dialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    text-align: center;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    text-align: center;
+}
+
+
+.video-container {
+    text-align: center;
+    margin: 20px 0;
+    padding-top: 30px;
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.music-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+    padding-bottom: 20px;
+}
+.music-links a {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+.music-links a:hover {
+    transform: scale(1.1);
+}
+
+.music-links img {
+    width: 55px; /* Adjust size as needed */
+    height: auto;
+}
+
+.tidal-logo {
+    padding-top: 10px;
+}
+.spotify-logo {
+    content: url(../images/icons/spotify-icon.svg);
+}
+.apple-music-logo {
+    content: url(../images/icons/apple-music-icon.svg);
+}
+.youtube-music-logo {
+    content: url(https://upload.wikimedia.org/wikipedia/commons/6/6a/Youtube_Music_icon.svg);
+}
+.amazon-music-logo {
+    content: url(../images/icons/amazon-music-icon.svg);
+}
+
+
+

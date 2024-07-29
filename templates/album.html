@@ -1,28 +1,67 @@
 {% extends 'layout.html' %}
 {% block content %}
+<br>
 <div class="row">
     <div class="col-md-6">
-        <img src="{{ album.artwork }}" class="img-fluid" alt="{{ album.title }}">
+        <img src="../{{ album.artwork }}" class="img-fluid" alt="{{ album.title }}">
+        <div class="music-links row">
+          <a href="{{ album.spotify_link }}" target="_blank" aria-label="Spotify">
+            <img class="spotify-logo" alt="Spotify"/>
+          </a>
+          <a href="{{ album.apple_music_link }}" target="_blank" aria-label="Apple Music">
+            <img class="apple-music-logo" alt="Apple Music"/>
+          </a>  
+          <a href="{{ album.tidal_link }}" target="_blank" aria-label="Tidal">
+            <img class="tidal-logo" alt="Tidal"/>
+          </a>
+          <a href="{{ album.youtube_music_link }}" target="_blank" aria-label="YouTube Music">
+            <img class="youtube-music-logo" alt="YouTube Music"/>
+          </a> 
+          <a href="{{ album.amazon_music_link }}" target="_blank" aria-label="Amazon Music">
+            <img class="amazon-music-logo" alt="Amazon Music"/>
+          </a> 
+      </div>
     </div>
     <div class="col-md-6">
         <h1>{{ album.title }}</h1>
-        <p><strong>Year:</strong> {{ album.year }}</p>
-        <p><strong>Featured Artist:</strong> {{ album.featured_artist }}</p>
-        <p><strong>Description:</strong> {{ album.description }}</p>
-        <p><strong>Tracks:</strong></p>
+        <p><strong>{{ album.year }}</strong></p>
+        <p><strong>{{ album.featured_artist }}</p>
+        <p>
+        {% for paragraph in album.description.split('\n\n') %}
+            <p>{{ paragraph }}</p>
+        {% endfor %}</p>
+        <p><strong>Tracks: (click to view lyrics)</strong></p>
         <ul>
-            {% for track in album.tracks %}
-            <li>{{ track }}</li>
+            {% for track in lyrics_data.tracks %}
+            <li>
+                <a href="#" data-toggle="modal" class="nav-link" data-target="#lyricsModal{{ loop.index }}" text-decoration: none;>{{ track.title }}</a>
+            </li>
             {% endfor %}
         </ul>
-        <p><strong>Lyrics:</strong> <pre>{{ album.lyrics }}</pre></p>
-        <div class="embed-container">
-            <iframe src="{{ album.spotify_link }}" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
-        <div class="embed-container">
-            <iframe allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="{{ album.apple_music_link }}"></iframe>
-        </div>
-        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Back to Albums</a>
+
+        <a href="{{ url_for('discography') }}" class="btn btn-secondary mt-3">Back to Discography</a>
     </div>
 </div>
+
+{% for track in lyrics_data.tracks %}
+<!-- Modal -->
+<div class="modal fade" id="lyricsModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="lyricsModalLabel{{ loop.index }}" aria-hidden="true">
+  <div class="modal-dialog custom-modal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="lyricsModalLabel{{ loop.index }}">{{ track.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div>{{ track.lyrics|safe }}</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock %}
