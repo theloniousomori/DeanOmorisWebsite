@@ -7,6 +7,7 @@ static/images/.DS_Store
 static/videos/.DS_Store
 static/images/album-covers/.DS_Store
 static/images/icons/.DS_Store
+static/images/backgrounds/.DS_Store
 
 data/.DS_Store
 data/lyrics/.DS_Store
@@ -17,4 +18,5 @@ templates/.DS_Store
 tmp/.DS_Store
 
 .env
+config.py
 
