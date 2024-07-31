@@ -16,3 +16,5 @@ public/.DS_Store
 templates/.DS_Store
 tmp/.DS_Store
 
+.env
+

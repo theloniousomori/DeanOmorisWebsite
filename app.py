@@ -1,15 +1,53 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_mail import Mail, Message
+from dotenv import load_dotenv
 import json
 import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 app = Flask(__name__)
 application = app
 
+# Configuration for Flask-Mail
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS') == 'True'
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL') == 'True'
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
 
-@app.route('/contact', methods=['GET'])
+mail = Mail(app)
+
+# Secret key for session management
+app.config['SECRET_KEY'] = os.urandom(24)
+
+
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html', current_page='contact')
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+
+        msg = Message(subject, 
+                      sender=email, 
+                      recipients=[app.config['MAIL_USERNAME']])
+        msg.body = f"From: {name} <{email}>\n\n{message}"
+
+        try:
+            mail.send(msg)
+            flash('Message sent successfully!', 'success')
+        except Exception as e:
+            flash(f'Failed to send message: {e}', 'danger')
+
+        return redirect(url_for('contact'))
+
+    return render_template('contact.html')
 
 def load_albums():
     with open('data/albums.json', 'r') as f:
